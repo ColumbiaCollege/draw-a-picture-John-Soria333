@@ -32,4 +32,10 @@ void setup()
   fill(0);
   ellipse(593, 245, 5, 15);
   ellipse(607, 245, 5, 15);
+  //Limbs
+  strokeWeight(3);
+  line(590, 280, 570, 320);
+  line(610, 280, 630, 320);
+  line(595, 350, 595, 380);
+  line(605, 350, 605, 380);
 }
