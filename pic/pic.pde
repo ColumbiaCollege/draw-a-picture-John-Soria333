@@ -1,16 +1,37 @@
-void setup()
-{
+void setup() {
+  background(255);
+  size(750, 500);
+}
+
+int YPrime = 250;
+int green = 102;
+int blue = 255;
+void draw() {
+  noStroke();
   background(255);
   size(750, 500);
   //Sky
-  fill(150, 150, 255);
+  //darkens the sky using the methods at the bottom
+  if (YPrime < 500) {
+    green = darken1v1(green);
+    blue = darken1v2(blue);
+  }
+  fill(0, green, blue);
   rect(0, 0, 750, 500);
   //Sun
-  fill(253, 184, 19);
-  ellipse(375, 250, 250, 250);
+  fill(251, 225, 0);
+  //makes the method return YPrime
+  if (YPrime < 500) {
+    YPrime = moveDown(YPrime);
+  }
+  //makes a wall for the sun to hit at the bottom
+  if (YPrime > 500) {
+    YPrime = 500;
+  }
+  ellipse(375, YPrime, 250, 250);
   //Grass
-  fill(100, 150, 0);
-  rect(0, 300, 750, 500);
+   fill(17, 182, 0);
+   rect(0, 300, 750, 500);
   //House
   fill(0, 0, 50);
   rect(50, 200, 205, 200);
@@ -27,11 +48,11 @@ void setup()
   triangle(600, 230, 580, 350, 620, 350);
   //Human head
   fill(255, 206, 180);
-  ellipse(600, 250, 40, 40);
+  ellipse(600, 240, 40, 40);
   //Eyes
   fill(0);
-  ellipse(593, 245, 5, 15);
-  ellipse(607, 245, 5, 15);
+  ellipse(593, 235, 5, 15);
+  ellipse(607, 235, 5, 15);
   //Limbs
   strokeWeight(3);
   //Arms
@@ -40,4 +61,27 @@ void setup()
   //Legs
   line(595, 350, 595, 380);
   line(605, 350, 605, 380);
+  for (int xstar = 50; xstar < 750; xstar = xstar+50) {
+    for (int ystar = 20; ystar < 300; ystar = ystar + 35) {
+  //draws stars when sun is fully down
+  if (YPrime == 500) {
+    fill(255);
+    ellipse(xstar, ystar, 3, 3);
+  }
+  }
+  }
 }
+int moveDown(int YPrime) {
+  return YPrime + 2;
+}
+int darken1v1(int green) {
+  return green - 1;
+}
+int darken1v2(int blue) {
+  return blue - 3;
+}
+//int gocar(Animate) {
+ // if (YPrime == 500) {
+  //  fill(255);
+  //  point(50, 50);
+//  }
